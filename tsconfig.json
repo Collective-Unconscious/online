@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"esModuleInterop": true,
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"rewriteRelativeImportExtensions": true,
+		"sourceMap": true
+	},
+	"extends": "./.svelte-kit/tsconfig.json"
+}
+
