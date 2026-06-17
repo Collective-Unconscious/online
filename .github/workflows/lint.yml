@@ -1,0 +1,39 @@
+{
+	"name": "Lint (.editorconfig)",
+	"on": [
+		"pull_request",
+		"push"
+	],
+	"jobs": {
+		"build": {
+			"name": "Lint",
+			"runs-on": "ubuntu-latest",
+			"permissions": {
+				"contents": "read",
+				"packages": "read",
+				"statuses": "write"
+			},
+			"steps": [
+				{
+					"name": "Checkout",
+					"uses": "actions/checkout@v6",
+					"with": {
+						"fetch-depth": 0,
+						"persist-credentials": false
+					}
+				},
+				{
+					"name": "Lint",
+					"uses": "super-linter/super-linter/slim@v8.6.0",
+					"env": {
+						"FILTER_REGEX_EXCLUDE": "^LICENSE$",
+						"GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}",
+						"STRIP_DEFAULT_WORKSPACE_FOR_REGEX": true,
+						"VALIDATE_EDITORCONFIG": true
+					}
+				}
+			]
+		}
+	}
+}
+
