@@ -24,9 +24,12 @@
 				},
 				{
 					"name": "Lint",
-					"uses": "super-linter/super-linter@v8.6.0",
+					"uses": "super-linter/super-linter/slim@v8.6.0",
 					"env": {
-						"GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}"
+						"FILTER_REGEX_EXCLUDE": "^LICENSE$",
+						"GITHUB_TOKEN": "${{ secrets.GITHUB_TOKEN }}",
+						"STRIP_DEFAULT_WORKSPACE_FOR_REGEX": true,
+						"VALIDATE_EDITORCONFIG": true
 					}
 				}
 			]
