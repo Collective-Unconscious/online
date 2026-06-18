@@ -13,7 +13,7 @@
 		<img src="assets/minna.png" alt="profile" height="48px" width="48px" />
 	</a>
 	<button id="profile-icon" onclick={() => alert("settings")}>
-		<img src="assets/settings.png" alt="settings" height="48px" width="48px" />
+		<img src="assets/settings.svg" alt="settings" height="48px" width="48px" />
 	</button>
 </div>
 
