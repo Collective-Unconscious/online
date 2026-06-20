@@ -1,0 +1,21 @@
+:root {
+	--color-light: #a5cffe;
+	--color-dark: #0d081e;
+
+	--color-accent: #f5ffff;
+
+	--color-text: #ffffff;
+}
+
+body {
+	background-color: var(--color-dark);
+	color: var(--color-text);
+	font-family: "B612", sans-serif;
+}
+
+a {
+	color: var(--color-light);
+}
+a:active {
+	color: var(--color-text);
+}
