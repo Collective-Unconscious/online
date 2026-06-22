@@ -46,7 +46,6 @@ main {
 #chat-container {
 	flex-basis: 20%;
 	flex-grow: 1;
-	min-height: 42em;
 }
 
 #game-view {
@@ -58,7 +57,7 @@ main {
 }
 
 /* full view */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
 	main {
 		align-items: center;
 		flex-direction: column;
@@ -70,7 +69,7 @@ main {
 	}
 }
 /* vertical view */
-@media (max-width: 920px) {
+@media (max-width: 1024px) {
 	#site-contents {
 		height: auto;
 	}
@@ -86,9 +85,10 @@ main {
 	}
 	#chat-container {
 		border-top: 0;
+		min-height: 42em;
 	}
 }
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
 	#chat-container {
 		border-left: 0;
 	}
