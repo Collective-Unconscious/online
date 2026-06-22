@@ -19,7 +19,6 @@ main {
 	padding: 0px;
 	display: flex;
 	justify-content: center;
-	gap: 1em;
 
 	flex-direction: row;
 }
@@ -38,6 +37,7 @@ main {
 	padding: 16px;
 }
 #chat-container {
+	border-left: 0;
 	flex-grow: 1;
 }
 
