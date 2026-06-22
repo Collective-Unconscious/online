@@ -22,6 +22,7 @@
 		display: flex;
 		align-items: center;
 		gap: 8px;
+		justify-content: right;
 	}
 
 	#profile-icon {

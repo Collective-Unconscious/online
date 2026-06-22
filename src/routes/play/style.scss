@@ -1,0 +1,55 @@
+#site-contents {
+	--border-width: 2px;
+
+	padding: 8px;
+	gap: 8px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: space-between;
+	height: calc(100vh - 32px);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+main {
+	padding: 0px;
+	display: flex;
+	justify-content: center;
+	gap: 1em;
+
+	flex-direction: row;
+}
+#right {
+	display: flex;
+	flex-direction: column;
+}
+#logotype,
+#profile-buttons {
+	display: block;
+	height: 64px;
+}
+#game-container,
+#chat-container {
+	border: solid var(--border-width) var(--color-light);
+	padding: 16px;
+}
+#chat-container {
+	flex-grow: 1;
+}
+
+@media (max-width: 1100px) {
+	main {
+		align-items: center;
+		flex-direction: column;
+	}
+	#divider {
+		width: 100%;
+		border-right: none;
+		border-top: solid var(--border-width) var(--color-light);
+	}
+}
+

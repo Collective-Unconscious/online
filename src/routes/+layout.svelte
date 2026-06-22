@@ -1,5 +1,5 @@
 <script lang="ts">
-	import "./styles.css";
+	import "./style.scss";
 	import { setUserContext } from "$lib/states/user";
 
 	let { data, children } = $props();

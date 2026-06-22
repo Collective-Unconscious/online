@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<a href="/">
+<a href="/" id="logotype">
 	<img
 		src="assets/logo.png"
 		alt="Collective Unconscious logo"
