@@ -12,9 +12,9 @@
 		"@sveltejs/adapter-node": "^5.5.4",
 		"@sveltejs/kit": "^2.65.1",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"sass-embedded": "^1.100.0",
 		"svelte": "^5.56.3",
 		"typescript": "^6.0.3",
 		"vite": "^8.0.16"
 	}
 }
-
