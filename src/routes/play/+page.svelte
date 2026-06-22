@@ -13,18 +13,15 @@
 </svelte:head>
 
 <div id="site-contents">
-	<header>
-	</header>
-
 	<main>
-		<div id="left">
+		<header>
 			<SiteLogo/>
+			<ProfileButtons/>
+		</header>
+		<div id="panes">
 			<div id="game-container">
 				<Game/>
 			</div>
-		</div>
-		<div id="right">
-			<ProfileButtons/>
 			<div id="chat-container">
 				<Chat/>
 			</div>
