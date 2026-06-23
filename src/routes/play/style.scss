@@ -1,51 +1,79 @@
 #site-contents {
 	--border-width: 2px;
 
-	height: 100%; min-height: 100vh;
+	height: 100%;
+	min-height: 100vh;
 
-	display: flex; flex-direction: column; gap: 16px;
-	align-items: center; justify-content: center;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+	justify-content: center;
 
 	> main,
 	> footer {
-		flex-grow: 0; flex-shrink: 0;
+		flex-grow: 0;
+		flex-shrink: 0;
 	}
 
 	> main {
-		width: 640px; padding: 8px; display: flex; flex-direction: column; gap: 8px;
+		width: 640px;
+		padding: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
 	}
 }
 
 #panes {
-	display: flex; width: 100%;
+	display: flex;
+	width: 100%;
 
 	border: var(--border-width) var(--color-light) solid;
 	border-radius: 8px;
 }
 
 #game-pane {
-	flex-shrink: 0; flex-grow: 0;
+	flex-shrink: 0;
+	flex-grow: 0;
 	padding: 32px 16px;
 
 	border-right: var(--border-width) var(--color-light) solid;
 	border-radius: 8px;
 
-	display: flex; gap: 16px;
+	display: flex;
+	gap: 16px;
 
 	> .game-buttons {
-		display: flex; flex-direction: column; gap: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
 
-		> button { width: 32px; height: 32px; flex-grow: 0; flex-shrink: 0; }
+		> button {
+			width: 32px;
+			height: 32px;
+			flex-grow: 0;
+			flex-shrink: 0;
+		}
 	}
 
 	> .game-window {
 		width: 640px;
-		display: flex; flex-direction: column; gap: 4px;
-		> .subtitle { text-align: right; width: 100%; }
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		> .subtitle {
+			text-align: right;
+			width: 100%;
+		}
 	}
 }
 
-#chat-pane { flex-shrink: 1; flex-grow: 1; padding: 16px; }
+#chat-pane {
+	flex-shrink: 1;
+	flex-grow: 1;
+	padding: 16px;
+}
 
 header {
 	display: flex;
@@ -69,7 +97,9 @@ header {
 
 /* Desktop view */
 @media (min-width: 1060px) and (min-height: 600px) {
-	#site-contents > main { width: 1040px; }
+	#site-contents > main {
+		width: 1040px;
+	}
 }
 
 /*
@@ -80,20 +110,30 @@ header {
  * All of these properties also carry over to the mobile view.
  */
 @media (max-width: 1060px) or (max-height: 600px) {
-	#site-contents > main { width: 784px; }
+	#site-contents > main {
+		width: 784px;
+	}
 
-	#panes { flex-direction: column; }
+	#panes {
+		flex-direction: column;
+	}
 	#game-pane {
-		flex-direction: column; align-items: center;
+		flex-direction: column;
+		align-items: center;
 
 		border-right: none;
 		border-bottom: var(--border-width) var(--color-light) solid;
 
 		position: relative;
-		> .game-buttons { position: absolute; left: 16px; }
+		> .game-buttons {
+			position: absolute;
+			left: 16px;
+		}
 	}
 
-	#chat-pane { height: 480px; }
+	#chat-pane {
+		height: 480px;
+	}
 }
 
 /*
@@ -104,11 +144,18 @@ header {
  * Other than that, the same layout as above is used.
  */
 @media (max-width: 780px) {
-	#site-contents > main { width: 100%; }
+	#site-contents > main {
+		width: 100%;
+	}
 
 	#game-pane {
 		padding: 16px;
-		> .game-buttons { position: unset; width: 100%; flex-direction: row; padding: 0; }
+		> .game-buttons {
+			position: unset;
+			width: 100%;
+			flex-direction: row;
+			padding: 0;
+		}
 	}
 
 	#game-view, #game-pane > .game-window {
