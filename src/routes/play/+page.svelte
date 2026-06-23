@@ -19,10 +19,19 @@
 			<ProfileButtons/>
 		</header>
 		<div id="panes">
-			<div id="game-container">
-				<Game/>
+			<div id="game-pane">
+				<div class="game-buttons">
+					<button>a</button>
+					<button>b</button>
+					<button>c</button>
+				</div>
+
+				<div class="game-window">
+					<Game/>
+					<div class="subtitle"><span id="world-name">World Name</span></div>
+				</div>
 			</div>
-			<div id="chat-container">
+			<div id="chat-pane">
 				<Chat/>
 			</div>
 		</div>
