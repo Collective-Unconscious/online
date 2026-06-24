@@ -75,15 +75,12 @@
 	padding: 16px;
 }
 
-header {
-	display: flex;
-	justify-content: space-between;
-}
-
 #game-view {
-	align-content: center;
+	align-items: center;
 	aspect-ratio: 4 / 3;
 	background-color: blue;
+	display: flex;
+	justify-content: center;
 	text-align: center;
 
 	/*
@@ -93,6 +90,13 @@ header {
 	 * otherwise (see Mobile layout at the end of the CSS).
 	 */
 	width: 640px;
+
+	> #canvas {
+		height: 480px;
+		outline: none;
+		user-select: none;
+		width: 640px;
+	}
 }
 
 /* Desktop view */
