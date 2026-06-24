@@ -3,6 +3,17 @@ window.addEventListener("load", () => {
 	const canvas = document.getElementById("canvas");
 	const game_view = document.getElementById("game-view");
 
+	new ResizeObserver((e) => {
+		console.log(e[0].contentRect.width);
+		if (e[0].contentRect.width === 640) {
+			canvas.style.width = "580px";
+			canvas.style.height = "435px";
+		} else {
+			canvas.style.width = "320px";
+			canvas.style.height = "240px";
+		}
+	}).observe(game_view);
+
 	window.addEventListener("keydown", (ev) => {
 		if (ev.key.startsWith("Arrow"))
 			ev.preventDefault();
