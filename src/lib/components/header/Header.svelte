@@ -4,6 +4,6 @@
 </script>
 
 <header id="site-header">
-	<SiteLogo />
-	<ProfileButtons />
+	<SiteLogo/>
+	<ProfileButtons/>
 </header>

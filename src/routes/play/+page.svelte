@@ -13,7 +13,7 @@
 
 <div id="site-contents">
 	<main>
-		<Header />
+		<Header/>
 
 		<div id="panes">
 			<div id="game-pane">
@@ -24,12 +24,12 @@
 				</div>
 
 				<div class="game-window">
-					<Game />
+					<Game/>
 					<div class="subtitle"><span id="world-name">World Name</span></div>
 				</div>
 			</div>
 			<div id="chat-pane">
-				<Chat />
+				<Chat/>
 			</div>
 		</div>
 	</main>
