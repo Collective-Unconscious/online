@@ -3,14 +3,7 @@
 	import SiteLogo from "./SiteLogo.svelte";
 </script>
 
-<header>
+<header id="site-header">
 	<SiteLogo />
 	<ProfileButtons />
 </header>
-
-<style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
-</style>
