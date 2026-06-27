@@ -1,8 +1,7 @@
 <script lang="ts">
-	import SiteLogo from "$lib/components/SiteLogo.svelte";
-	import ProfileButtons from "$lib/components/ProfileButtons.svelte";
 	import Game from "$lib/components/play/Game.svelte";
 	import Chat from "$lib/components/play/Chat.svelte";
+	import Header from "$lib/components/header/Header.svelte";
 
 	// styling
 	import "./style.scss";
@@ -14,10 +13,8 @@
 
 <div id="site-contents">
 	<main>
-		<header>
-			<SiteLogo/>
-			<ProfileButtons/>
-		</header>
+		<Header/>
+
 		<div id="panes">
 			<div id="game-pane">
 				<div class="game-buttons">
@@ -39,4 +36,3 @@
 
 	<footer>Collective Unconscious v1.0.0</footer>
 </div>
-
