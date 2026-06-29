@@ -76,9 +76,10 @@
 }
 
 #game-view {
-	align-content: center;
+	align-items: center;
 	aspect-ratio: 4 / 3;
-	background-color: blue;
+	display: flex;
+	justify-content: center;
 	text-align: center;
 
 	/*
@@ -88,6 +89,15 @@
 	 * otherwise (see Mobile layout at the end of the CSS).
 	 */
 	width: 640px;
+
+	> #canvas {
+		background-color: #000;
+		height: 435px;
+		image-rendering: pixelated;
+		outline: none;
+		user-select: none;
+		width: 580px;
+	}
 }
 
 /* Desktop view */
@@ -155,6 +165,10 @@
 
 	#game-view, #game-pane > .game-window {
 		width: 320px;
+
+		> #canvas {
+			image-rendering: auto;
+		}
 	}
 }
 
