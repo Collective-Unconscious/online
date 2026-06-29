@@ -22,21 +22,21 @@
 			id: 0,
 			author: "mossball_lover_32",
 			content: "I love Mossball",
-			channel: "World",
-		},
+			channel: "Map",
+		} as Message,
 		{
 			id: 1,
 			author: "mossball_ambivalent",
 			content:
 				"hfjghsfjlkd gjklsd ghl hsdglkhlgdjfg ljdsgkdsfgjlk ljsgkd gljsfkd hsgdfjglk",
 			channel: "Global",
-		},
+		} as Message,
 		{
 			id: 2,
 			author: "mossball_hater_64",
 			content: "I too am in this episode",
 			channel: "Party",
-		},
+		} as Message,
 	] as Message[];
 
 	let messages = $state<Message[]>(mockMessages);
