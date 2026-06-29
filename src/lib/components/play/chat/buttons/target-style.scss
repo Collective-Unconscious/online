@@ -1,0 +1,27 @@
+#target-buttons-drawer {
+	position: absolute;
+	transform: translateY(2px);
+
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+#target-channel-button {
+	button {
+		background-color: var(--color-button);
+		border: none;
+		border-radius: 160px;
+		padding: 6px 16px 6px 16px;
+
+		width: 80px;
+
+		font-family: inherit;
+		font-size: inherit;
+		color: inherit;
+	}
+	button:hover {
+		background-color: var(--color-button-hover);
+		cursor: pointer;
+	}
+}
