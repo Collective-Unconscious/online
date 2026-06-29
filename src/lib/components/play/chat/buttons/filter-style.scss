@@ -1,0 +1,43 @@
+#filter-buttons-drawer {
+	position: absolute;
+	transform: translateY(2px);
+
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+
+	> button.deselected {
+		background-color: var(--color-dark);
+		outline: 2px dashed var(--color-button);
+		outline-offset: -1px;
+	}
+	> button.deselected:hover {
+		background-color: var(--color-button-hover-dark);
+		cursor: pointer;
+	}
+}
+
+#filter-channel-button {
+	button {
+		background-color: var(--color-button);
+		border: none;
+		border-radius: 160px;
+		padding: 6px 16px 6px 16px;
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		font-family: inherit;
+		font-size: inherit;
+		color: inherit;
+	}
+	button:hover {
+		background-color: var(--color-button-hover);
+		cursor: pointer;
+	}
+	button.selectable {
+		background-color: var(--color-button);
+		cursor: not-allowed;
+	}
+}

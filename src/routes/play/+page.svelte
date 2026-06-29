@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Game from "$lib/components/play/Game.svelte";
-	import Chat from "$lib/components/play/Chat.svelte";
+	import Chat from "$lib/components/play/chat/Chat.svelte";
 	import Header from "$lib/components/header/Header.svelte";
 
 	// styling
