@@ -6,3 +6,7 @@ node_modules/
 .env
 pnpm*
 
+# minnaengine files
+static/bin/
+static/data/
+
