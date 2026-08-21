@@ -6,4 +6,3 @@
 <div id="game-view">
 	<canvas id="canvas" tabindex="-1"></canvas>
 </div>
-

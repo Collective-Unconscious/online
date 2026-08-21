@@ -12,4 +12,3 @@ I'm setting this up rather hastily but expect some proper information to come
 about in this document very soon. Main development takes place on the `main`
 branch. Please use pull requests and separate branches/forks to work on your
 changes.
-

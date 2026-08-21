@@ -6,4 +6,3 @@
 <p>Collective Of Conscious</p>
 
 <a href="/play" data-sveltekit-reload>Play video game</a>
-
