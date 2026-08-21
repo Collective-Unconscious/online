@@ -1,4 +1,4 @@
-import createEasyRpgPlayer from "/bin/game.js";
+import createEasyRpgPlayer from "/bin/ynoengine-simd.js";
 
 let player;
 window.addEventListener("load", () => {
