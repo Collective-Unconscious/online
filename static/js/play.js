@@ -44,3 +44,21 @@ globalThis.onUpdateSystemGraphic = (name) => {
 globalThis.syncPlayerData = (uuid, rank, account_bin, badge, id) => {
 	console.log("stub sync_player_data:", uuid, rank, account_bin, badge, id);
 };
+
+globalThis.shouldConnectPlayer = (uuid) => {
+	console.log("stub should_connect_player:", uuid);
+	return true;
+};
+
+globalThis.onRoomSwitch = () => {
+	console.log("stub on_room_switch");
+};
+
+globalThis.onPlayerConnectedOrUpdated = (system, name, id) => {
+	console.log("stub on_player_connected_or_updated:", system, name, id);
+};
+
+globalThis.onPlayerDisconnected = (id) => {
+	console.log("stub on_player_disconnected:", id);
+};
+

@@ -7,7 +7,8 @@ export default defineConfig({
 	plugins: [
 		sveltekit({
 			adapter: adapter(),
-			preprocess: vitePreprocess()
+			preprocess: vitePreprocess(),
+			experimental: { explicitEnvironmentVariables: true },
 		})
 	]
 });
