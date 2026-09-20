@@ -1,6 +1,6 @@
 import { API_BASE_LOCAL } from "$app/env/private";
 import { API_BASE_MAIN } from "$app/env/public";
-import type { User } from "$lib/types/user";
+import { UserTransform, type User } from "$lib/types/user";
 import * as v from "valibot";
 
 export async function handleFetch({ request, fetch }) {
@@ -16,22 +16,12 @@ export async function handleFetch({ request, fetch }) {
 	return fetch(request);
 }
 
-const ApiUserSchema = v.object({
-	AccountID: v.pipe(v.string(), v.uuid()),
-	Username: v.string(),
-	CreatedAt: v.pipe(v.string(), v.isoTimestamp()),
-});
-const UserTransformSchema = v.pipe(ApiUserSchema, v.transform(au => ({
-	accountId: au.AccountID,
-	name: au.Username,
-	createdAt: au.CreatedAt,
-})))
-
 export async function handle({ event, resolve }) {
+	// Page will not load if this fails
 	const res = await event.fetch(`${API_BASE_MAIN}/users/me`);
 	if (res.ok) {
 		const json = await res.json();
-		const user: User = v.parse(UserTransformSchema, json);
+		const user: User = v.parse(UserTransform, json);
 		event.locals.user = user;
 	}
 

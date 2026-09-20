@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { getUserContext } from "$lib/states/user";
+	import AuthModal from "./AuthModal.svelte";
+
+	let shown = $state(false);
 
 	const user = getUserContext();
 </script>
@@ -18,5 +21,7 @@
 		</button>
 	</div>
 {:else}
-	<div>(log in..)</div>
+	<!-- svelte-ignore a11y_invalid_attribute -->
+	<a href="#" onclick={() => shown = true}>(log in..)</a>
+	<AuthModal bind:shown />
 {/if}
