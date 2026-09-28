@@ -43,3 +43,53 @@
 		display: none;
 	}
 }
+
+dialog {
+	> form {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		> h1 {
+			margin-top: 0;
+			margin-bottom: 0.5em;
+		}
+
+		input {
+			border-radius: 5px;
+		}
+
+		> button {
+			margin-top: 1em;
+			padding: 0.3em 1em;
+			border: none;
+			font-family: "B612", sans-serif;
+
+			width: auto;
+
+			background-color: var(--color-button);
+			color: var(--color-text);
+
+			transition-duration: 0.1s;
+			transition: all;
+		}
+		> button:hover {
+			border-color: var(--color-dark);
+			background-color: var(--color-button-hover-dark);
+		}
+
+		padding: 1.5em;
+		width: 20em;
+	}
+
+	background-color: var(--color-dark);
+	color: var(--color-text);
+
+	padding: 0;
+
+	border: var(--border-width) var(--color-light) solid;
+	border-radius: 8px;
+}
+dialog::backdrop {
+	background-color: var(--color-dialog-shadow);
+}
