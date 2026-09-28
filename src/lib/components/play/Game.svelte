@@ -23,6 +23,12 @@
 		});
 	}
 
+	// For a clearer error than a failed import
+	async function findMissing(files: string[]): Promise<string[]> {
+		const found = await Promise.all(files.map((file) => fetch(file, { method: "HEAD" }).then((res) => res.ok)));
+		return files.filter((_, i) => !found[i]);
+	}
+
 	// ES6 builds export it, others put it on window
 	async function loadEngine(url: string): Promise<(opts: object) => Promise<any>> {
 		const engine = await import(/* @vite-ignore */ url);
@@ -36,10 +42,17 @@
 	onMount(async () => {
 		try {
 			// SOME browsers can't run the SIMD build
-			const engine = (await simd()) ? "/bin/ynoengine-simd.js" : "/bin/ynoengine.js";
+			const engine = (await simd()) ? "/bin/ynoengine-simd" : "/bin/ynoengine";
+
+			const missing = await findMissing([`${engine}.js`, `${engine}.wasm`]);
+			if (missing.length > 0) {
+				console.error(`missing ${missing.join(" and ")}, the engine build goes in static/bin`);
+				status = `Couldn't find the game engine (${missing.join(", ")})`;
+				return;
+			}
 
 			await loadScript("/js/play.js");
-			const createEasyRpgPlayer = await loadEngine(engine);
+			const createEasyRpgPlayer = await loadEngine(`${engine}.js`);
 
 			const player = await createEasyRpgPlayer({ game: GAME, wsUrl: WS_URL });
 			player.initApi();
