@@ -5,8 +5,7 @@
 	import { onMount } from "svelte";
 	import { API_BASE_MAIN } from "$app/env/public";
 
-	declare function createEasyRpgPlayer(opts: object): Promise<any>;
-
+	const ENGINE_URL = "/bin/ynoengine-simd.js";
 	const GAME = "default";
 	const WS_URL = API_BASE_MAIN.replace(/^http/, "ws") + "/";
 
@@ -22,10 +21,19 @@
 		});
 	}
 
+	// ES6 builds export it, others put it on window
+	async function loadEngine(): Promise<(opts: object) => Promise<any>> {
+		const engine = await import(/* @vite-ignore */ ENGINE_URL);
+		if (engine.default) return engine.default;
+
+		await loadScript(ENGINE_URL);
+		return (window as any).createEasyRpgPlayer;
+	}
+
 	// The engine grabs #canvas right away
 	onMount(async () => {
 		await loadScript("/js/play.js");
-		await loadScript("/bin/ynoengine-simd.js");
+		const createEasyRpgPlayer = await loadEngine();
 
 		const player = await createEasyRpgPlayer({ game: GAME, wsUrl: WS_URL });
 		player.initApi();
