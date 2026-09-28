@@ -6,40 +6,28 @@
 	import EmoteButton from "./buttons/EmoteButton.svelte";
 	import ChatMessage from "./ChatMessage.svelte";
 
-	import { tick } from "svelte";
+	import { onMount, tick } from "svelte";
 	import { channels } from "$lib/types/channels";
-	import type { Message } from "$lib/types/message";
 	import { getUserContext } from "$lib/states/user";
+	import { Chat } from "$lib/states/chat.svelte";
 
 	const user = getUserContext();
+	const connection = new Chat();
 	let inputContent: string = $state("");
 	let targetChannel: (typeof channels)[number] = $state("Global");
 	let filteredChannels: (typeof channels)[number][] = $state([...channels]);
 
-	// TODO: server stuff
-	const mockMessages = [
-		{
-			id: 0,
-			author: "mossball_lover_32",
-			content: "I love Mossball",
-			channel: "Map",
-		} as Message,
-		{
-			id: 1,
-			author: "mossball_ambivalent",
-			content:
-				"hfjghsfjlkd gjklsd ghl hsdglkhlgdjfg ljdsgkdsfgjlk ljsgkd gljsfkd hsgdfjglk",
-			channel: "Global",
-		} as Message,
-		{
-			id: 2,
-			author: "mossball_hater_64",
-			content: "I too am in this episode",
-			channel: "Party",
-		} as Message,
-	] as Message[];
+	onMount(() => {
+		// Guests can't chat
+		if (user) connection.connect();
+		return () => connection.close();
+	});
 
-	let messages = $state<Message[]>(mockMessages);
+	// Scroll down when new messages come in
+	$effect.pre(() => {
+		connection.messages.length;
+		tryScroll();
+	});
 
 	async function tryScroll() {
 		const chat = document.getElementById("chat-main");
@@ -56,23 +44,15 @@
 		}
 	}
 	function sendMessage() {
-		if (!user || !inputContent || !targetChannel) {
+		const content = inputContent.trim();
+		if (!user || !content || !targetChannel) {
 			return;
 		}
 
-		// TODO: do some stuff on the backend
-		messages.push({
-			id: messages.length,
-			author: user.name,
-			content: inputContent,
-			channel: targetChannel,
-		} as Message);
+		connection.send(targetChannel, content);
 		inputContent = "";
-
-		tryScroll();
 	}
 	function inputKeyDown(event: KeyboardEvent) {
-		console.log(event.key);
 		if (event.key === "Enter") {
 			sendMessage();
 		}
@@ -82,7 +62,7 @@
 <aside>
 	<!-- Main part -->
 	<div id="chat-main">
-		{#each messages as message (message.id)}
+		{#each connection.messages as message (message.id)}
 			{#if filteredChannels.includes(message.channel)}
 				<ChatMessage {message}/>
 			{/if}
@@ -103,7 +83,17 @@
 			<EmoteButton/>
 		</div>
 
+		{#if connection.error}
+			<div class="chat-error">{connection.error}</div>
+		{/if}
+
 		<!-- TOOD: a form instead -->
-		<input bind:value={inputContent} onkeydown={inputKeyDown}/>
+		<input
+			bind:value={inputContent}
+			onkeydown={inputKeyDown}
+			maxlength="150"
+			disabled={!user}
+			placeholder={user ? "" : "Log in to chat"}
+		/>
 	</div>
 </aside>

@@ -33,11 +33,8 @@
 		}
 
 		// TODO: live-update state here some way
-		// right now it is only on page-load by ssr
-
-		// ok, close dialog
-		username = password = statusText = "";
-		dialog?.close();
+		// right now it is only on page-load by ssr, so just reload for now
+		location.reload();
 	}
 </script>
 
