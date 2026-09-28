@@ -3,6 +3,7 @@
 	// September 28 2026
 
 	import { onMount } from "svelte";
+	import { beforeNavigate } from "$app/navigation";
 	import { API_BASE_MAIN } from "$app/env/public";
 	import { simd } from "wasm-feature-detect";
 
@@ -42,6 +43,13 @@
 		player.initApi();
 		player.api.sessionReady();
 		canvas.focus();
+	});
+
+	// The engine can't be shut down, so do a full page load
+	beforeNavigate(({ to, type, cancel }) => {
+		if (type === "leave" || !to) return;
+		cancel();
+		location.href = to.url.href;
 	});
 
 	function onKeyDown(ev: KeyboardEvent) {
