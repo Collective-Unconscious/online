@@ -4,8 +4,8 @@
 
 	import { onMount } from "svelte";
 	import { API_BASE_MAIN } from "$app/env/public";
+	import { simd } from "wasm-feature-detect";
 
-	const ENGINE_URL = "/bin/ynoengine-simd.js";
 	const GAME = "default";
 	const WS_URL = API_BASE_MAIN.replace(/^http/, "ws") + "/";
 
@@ -22,18 +22,21 @@
 	}
 
 	// ES6 builds export it, others put it on window
-	async function loadEngine(): Promise<(opts: object) => Promise<any>> {
-		const engine = await import(/* @vite-ignore */ ENGINE_URL);
+	async function loadEngine(url: string): Promise<(opts: object) => Promise<any>> {
+		const engine = await import(/* @vite-ignore */ url);
 		if (engine.default) return engine.default;
 
-		await loadScript(ENGINE_URL);
+		await loadScript(url);
 		return (window as any).createEasyRpgPlayer;
 	}
 
 	// The engine grabs #canvas right away
 	onMount(async () => {
+		// SOME browsers can't run the SIMD build
+		const engine = (await simd()) ? "/bin/ynoengine-simd.js" : "/bin/ynoengine.js";
+
 		await loadScript("/js/play.js");
-		const createEasyRpgPlayer = await loadEngine();
+		const createEasyRpgPlayer = await loadEngine(engine);
 
 		const player = await createEasyRpgPlayer({ game: GAME, wsUrl: WS_URL });
 		player.initApi();
