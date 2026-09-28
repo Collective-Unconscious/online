@@ -8,9 +8,10 @@
 	import { simd } from "wasm-feature-detect";
 
 	const GAME = "default";
-	const WS_URL = API_BASE_MAIN.replace(/^http/, "ws") + "/";
+	const WS_URL = API_BASE_MAIN.replace(/^http/, "ws").replace(/\/?$/, "/");
 
 	let canvas: HTMLCanvasElement;
+	let status = $state("Loading...");
 
 	function loadScript(src: string): Promise<void> {
 		return new Promise((resolve, reject) => {
@@ -33,16 +34,22 @@
 
 	// The engine grabs #canvas right away
 	onMount(async () => {
-		// SOME browsers can't run the SIMD build
-		const engine = (await simd()) ? "/bin/ynoengine-simd.js" : "/bin/ynoengine.js";
+		try {
+			// SOME browsers can't run the SIMD build
+			const engine = (await simd()) ? "/bin/ynoengine-simd.js" : "/bin/ynoengine.js";
 
-		await loadScript("/js/play.js");
-		const createEasyRpgPlayer = await loadEngine(engine);
+			await loadScript("/js/play.js");
+			const createEasyRpgPlayer = await loadEngine(engine);
 
-		const player = await createEasyRpgPlayer({ game: GAME, wsUrl: WS_URL });
-		player.initApi();
-		player.api.sessionReady();
-		canvas.focus();
+			const player = await createEasyRpgPlayer({ game: GAME, wsUrl: WS_URL });
+			player.initApi();
+			player.api.sessionReady();
+			status = "";
+			canvas.focus();
+		} catch (err) {
+			console.error("couldn't start the game:", err);
+			status = "Couldn't load the game, try refreshing the page";
+		}
 	});
 
 	// The engine can't be shut down, so do a full page load
@@ -59,4 +66,21 @@
 
 <div id="game-view">
 	<canvas id="canvas" tabindex="-1" bind:this={canvas} onkeydown={onKeyDown}></canvas>
+	{#if status}
+		<p class="status">{status}</p>
+	{/if}
 </div>
+
+<style>
+	#game-view {
+		position: relative;
+	}
+
+	.status {
+		position: absolute;
+		max-width: 90%;
+		margin: 0;
+		text-align: center;
+		pointer-events: none;
+	}
+</style>
