@@ -2,9 +2,9 @@
 	import { getUserContext } from "$lib/states/user";
 	import AuthModal from "./AuthModal.svelte";
 
-	let shown = $state(false);
-
 	const user = getUserContext();
+
+	let authModal = $state<ReturnType<typeof AuthModal>>();
 </script>
 
 {#if user}
@@ -21,7 +21,9 @@
 		</button>
 	</div>
 {:else}
-	<!-- svelte-ignore a11y_invalid_attribute -->
-	<a href="#" onclick={() => shown = true}>(log in..)</a>
-	<AuthModal bind:shown />
+	<div id="auth-links">
+		<button onclick={() => authModal?.open("login")}>(log in..)</button>
+		<button onclick={() => authModal?.open("signup")}>(sign up..)</button>
+	</div>
+	<AuthModal bind:this={authModal} />
 {/if}
